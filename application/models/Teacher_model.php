@@ -69,7 +69,7 @@
 		course_attendance.reg_no as reg, COUNT(course_attendance.attendance_date) as totals, program.program_name as programs');
 		$this->db->from('course_attendance');
 		$this->db->join('program', 'course_attendance.program_id = program.id', 'inner');
-		$this->db->where('course_id = 3 ');
+		$this->db->where('course_attendance.course_id = 3 ');
 		$this->db->group_by('names');
 
 		$query = $this->db->get();
