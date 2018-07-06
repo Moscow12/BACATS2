@@ -68,7 +68,7 @@
 			if($this->user_model->check_reg_no_exists($email)){
 				return true;
 			} else{
-				return false;
+				return false; 
 			}
 		}
 

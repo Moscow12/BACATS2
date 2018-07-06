@@ -6,8 +6,8 @@
 <?php if($this->session->flashdata('course_register')):  ?>    
                 <?php echo '<p class="alert alert-success">'.$this->session->flashdata('course_register'). '</p>'; ?>
             <?php endif; ?>
-<div class="row"><div class="col-md-3"></div>
-    <div class="col-sm-6">
+<div class="row"><div class="col-md-2"></div>
+    <div class="col-sm-8">
         <div class="card">
             <div class="card card-header"><?php echo $title; ?></div>
             <div class="card card-body">
@@ -26,6 +26,6 @@
                
             </div>
         </div>
-    </div><div class="col-md-3"></div>
+    </div><div class="col-md-2"></div>
 </div>
 <?php echo form_close(); ?>

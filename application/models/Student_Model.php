@@ -66,6 +66,15 @@
             return $query->result_array();
         }
         
+        //check the email exist
+		public function check_email_exists($email){
+			$query = $this->db->get_where('student', array('email'=> $email));
+			if(empty($query->row_array())){
+				return true;
+			} else{
+				false;
+			} 
+		}
         public function content(){
             
         }

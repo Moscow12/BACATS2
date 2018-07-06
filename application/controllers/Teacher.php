@@ -97,7 +97,10 @@
 
 				$this->session->set_flashdata('course_register', 'Your course has been registered successful');
 
-				redirect('index.php/teacher/student');
+				#redirect('index.php/teacher/student');
+				$this->load->view('teacher/header2');
+				$this->load->view('teacher/course', $data);
+				$this->load->view('teacher/footer');
 			}
 		}
 		
@@ -148,3 +151,4 @@
 
 		
 	}
+	

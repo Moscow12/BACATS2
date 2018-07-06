@@ -25,7 +25,7 @@ class Student extends CI_Controller{
         
         $this->form_validation->set_rules('gender', 'Gender', 'required');
         $this->form_validation->set_rules('dob', 'Date of Birth', 'required');
-        $this->form_validation->set_rules('email', 'email', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required|callback_check_email_exists');
         $this->form_validation->set_rules('phoneno', 'Phone number', 'required|numeric');
         $this->form_validation->set_rules('location', 'Location', 'required');
       
@@ -62,6 +62,16 @@ class Student extends CI_Controller{
 			}
       }	 	
     }
+
+    public function check_email_exists($email){
+        $this->form_validation->set_message('check_email_exists', 'That Email Address already Exist.');
+        if($this->student_model->check_email_exists($email)){
+            return true;
+        } else{
+            return false; 
+        }
+    }
+
     public function Myprofile(){
         $data['title'] = 'My Profile';
         $data['profile'] = $this->student_model->get_profile();

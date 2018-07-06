@@ -34,7 +34,7 @@
                                     <td ><?php echo $users['Byname']; ?></td>
                                     <td align="center">
                                         <div class="form-check">
-                                            <input type="checkbox" name="course[]" value="<?php #echo $course['id']; ?>" class="form-check-input" id="exampleCheck1" align="center">
+                                            <input type="checkbox" name="course[]" value="<?php #echo $course['id']; ?>" class="form-check-input"  align="center">
                                         </div>
                                     </td>
                                 </tr>
