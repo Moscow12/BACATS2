@@ -345,9 +345,18 @@
 
 			//function to call attendances
 		public function attendance(){
-			$data['title'] = 'Students Attendences'; 
+			$data['title'] = 'Students Attendences Course name '; 
 
-			$data['attend'] = $this->register_model->get_attendance();
+			$course_code = $_GET['course_code'];
+			
+			$ids = $this->register_model->ids($course_code);
+
+			$course_id;
+			foreach ($ids as $id) {
+					$course_id =  $id['id'];
+					$data['course_name'] =  $id['course_name'];
+			}			
+			$data['courses'] = $this->register_model->get_attendance($course_id);
 
 			$this->load->view('admin/header1');
 			$this->load->view('admin/attendance', $data);
@@ -368,4 +377,16 @@
 			$this->load->view('admin/fingerscan', $data);
 			$this->load->view('admin/footer');
 		}
+
+		public function profile(){
+			$data['title'] = 'Student profile';
+	
+			$this->register_model->student_profile();
+	
+			$this->load->view('admin/header1');
+			$this->load->view('admin/studentprof', $data);
+			$this->load->view('admin/footer');
+		   
+		}
+		
 }

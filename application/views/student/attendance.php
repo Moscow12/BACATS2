@@ -37,6 +37,11 @@
                     <td>Percentage2  <?php $otea = rand(00, 100); echo $otea."%" ; ?></td>
                 </tfoot>                         
             </table>
+            <?php foreach($attended as $attendance){ ?>
+
+                <?php echo $attendance['attendance_date'];?>
+
+            <?php }?>
             <div class="card-footer border-danger"><h4>Be Punctual attend Classes</h4></div>
         </div>
     </div>

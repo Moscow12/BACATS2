@@ -22,7 +22,11 @@
                                     <td><?php echo $course_view['course_code']; ?></td>
                                     <td><?php echo $course_view['course_name']; ?></td>
                                     <td ><?php echo $course_view['byname']?></td>
-                                    <td><button class="btn btn-primary "> <i class = "fa fa-eye" title="View Attendance"></i> View Attendance</button></td>
+                                    <form action="attendance">
+                                    <td><input class="btn btn-primary " value="view Attendance" title="View Attendance" type="submit"> <i class = "fa fa-eye"  title="View Attendance"></i></td>
+                                    <input type="hidden" value="<?php echo $course_view['course_code']; ?>" name="course_code">
+                                    <input type="hidden" value="<?php echo $course_view['byname']; ?>" name="byname">
+                                    </form>
                                 </tr>
                             <?php } ?>
                         

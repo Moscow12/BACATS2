@@ -82,3 +82,11 @@ where cast(datecolumn as Date) = cast(getdate() as Date)
 select CONCAT(course_attendance.firstname, course_attendance.mname, course_attendance.lastname) as names, 
 course_attendance.reg_no as reg, course_attendance.attendance_date as et, program.program_name as pname from course_attendance 
 JOIN program on course_attendance.program_id = program.id WHERE course_id = 9 AND DATE(`attendance_date`) = CURDATE() GROUP BY (names)
+
+
+--all attendances of all course with name of student
+select CONCAT(course_attendance.firstname, course_attendance.mname, course_attendance.lastname) as names,
+course_attendance.reg_no as reg, COUNT(course_attendance.attendance_date) as ettimes, program.program_name as pname 
+from course_attendance 
+JOIN program on course_attendance.program_id = program.id 
+GROUP BY (names)

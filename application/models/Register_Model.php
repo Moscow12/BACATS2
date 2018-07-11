@@ -150,10 +150,26 @@
 		 }
 
 		//getting attendances 
-		public function get_attendance(){
-			$this->db->select('*');
-			$this->db->from('attendance');
-			$this->db->where('id=2'); 
+		public function get_attendance($course_id){
+
+				$this->db->select('CONCAT(course_attendance.firstname, course_attendance.mname, course_attendance.lastname) as names,
+				course_attendance.reg_no as reg, COUNT(course_attendance.attendance_date) as totals, program.program_name as programs');
+			$this->db->from('course_attendance');
+			$this->db->join('program', 'course_attendance.program_id = program.id', 'inner');
+			$this->db->where('course_attendance.course_id', $course_id);
+			$this->db->group_by('names');
+
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+		public function ids($course_code){
+
+			$this->db->select('id, teacher_id, course_name');
+			$this->db->from('course_view');
+			$this->db->where('course_view.course_code', $course_code);
+
+			$query = $this->db->get();
+			return $query->result_array();
 		}
 
 		//trail
@@ -188,5 +204,18 @@
 				'number' =>$this->input->post('number')
 			);
 			return $this->db->insert('student', $data);
+		}
+
+
+		// function to view the profile of the individual student
+		public function student_profile(){
+			$user = $this->session->userdata('user_id');		
+            $this->db->select('reg_no, CONCAT( firstname, '.', mname, '.', lastname) as name, email, phoneno, location, dob, gender, d.program_name' );
+            $this->db->from( 'sprofile_view s');
+            $this->db->join('program d', 'd.id = s.program_id', 'inner');
+            $this->db->where('s.id', $user);
+            
+            $query = $this->db->get();
+            return $query->result_array();
 		}
 	}

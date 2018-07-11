@@ -126,7 +126,7 @@ class Student extends CI_Controller{
         $data['title'] = 'Attendances Record for all courses';
         
         $data['attended'] = $this->student_model->getattendance();
-
+        
         $this->load->view('student/header');
         $this->load->view('student/attendance', $data);
         $this->load->view('student/footer');
@@ -153,8 +153,5 @@ class Student extends CI_Controller{
         $this->load->view('student/footer');
     }
 
-    
-    
-
-   
+       
 }

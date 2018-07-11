@@ -127,14 +127,14 @@
 
 
         public function getattendance(){
+            $user = $this->session->userdata('user_id');		
+            $this->db->select('attendance_date, course_id, student_id');
+            $this->db->from('attendance');
+            $this->db->where('attendance.id', $user);
 
-        $this->db->select('attendance_date, course_id, student_id');
-        $this->db->from('attendance');
-        $this->db->join('course', 'attendance.course_id = course.id', 'inner');
-        $this->db->join('student', 'attendance.student_id = student.id', 'inner');
-        $this->db->where('course_id = course_code');
 
-        #return $this->db-get('attendance')->result();
+            $query = $this->db->get();
+            return $query->result_array();
 
         }
 }
