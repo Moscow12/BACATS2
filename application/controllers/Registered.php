@@ -369,8 +369,8 @@
 		public function enrollfinger(){
 			$data['title'] = 'Enroll FingerPrints';
 
-			#$data['enrolls'] = $this->register_model->enroll_finger();
-			$data['students'] = $this->register_model->get_student();
+			$reg_no = $_GET['reg_no'];
+			$data['students'] = $this->register_model->get_student($reg_no);
 
 
 			$this->load->view('admin/header1');
@@ -380,13 +380,30 @@
 
 		public function profile(){
 			$data['title'] = 'Student profile';
+			$reg_no = $_GET['reg_no'];
+			
+			// $tuma= $this->register_model->prof($id);
+		
+			
 	
-			$this->register_model->student_profile();
+			$data['profile'] = $this->register_model->student_profile($reg_no);
 	
 			$this->load->view('admin/header1');
 			$this->load->view('admin/studentprof', $data);
 			$this->load->view('admin/footer');
 		   
+		}
+		public function tprofile(){
+			$data['title'] = 'Instructor Profile';
+			$id = $_GET['id'];
+			
+
+			$data['profile'] = $this->register_model->teacher_profile($id);
+
+			$this->load->view('admin/header1');
+			$this->load->view('admin/teacherprof', $data);
+			$this->load->view('admin/footer');
+
 		}
 		
 }
