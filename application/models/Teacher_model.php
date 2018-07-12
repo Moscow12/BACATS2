@@ -43,7 +43,7 @@
 	}
 
 	public function studentcourse(){
-		$this->db->select('reg_no, CONCAT( firstname, '.', mname, '.', lastname) as name, p.program_name' );
+		$this->db->select('reg_no, firstname, mname, lastname, p.program_name' );
 		$this->db->from('user_view');
 		$this->db->join('program p', 'p.id = user_view.program_id', 'inner');
 
@@ -53,7 +53,7 @@
 	public function get_profile(){
 
 		$user = $this->session->userdata('user_id');		
-		$this->db->select('reg_no, CONCAT( firstname, '.', mname, '.',lastname) as name, email, phoneno, office_no, dob, gender, d.dept_name');
+		$this->db->select('reg_no, firstname,  mname, lastname, email, phoneno, office_no, dob, gender, d.dept_name');
 		$this->db->from( 'tprofile_view p');
 		$this->db->join('department d', 'd.id = p.dept_id', 'inner');
 		$this->db->where('p.id', $user);
@@ -65,12 +65,12 @@
 	//modal attendance
 	public function attendance(){
 		 
-		$this->db->select('CONCAT(course_attendance.firstname, course_attendance.mname, course_attendance.lastname) as names,
+		$this->db->select('course_attendance.firstname, course_attendance.mname, course_attendance.lastname,
 		course_attendance.reg_no as reg, COUNT(course_attendance.attendance_date) as totals, program.program_name as programs');
 		$this->db->from('course_attendance');
 		$this->db->join('program', 'course_attendance.program_id = program.id', 'inner');
 		$this->db->where('course_attendance.course_id = 3 ');
-		$this->db->group_by('names');
+		$this->db->group_by('reg');
 
 		$query = $this->db->get();
 		return $query->result_array();
@@ -88,5 +88,21 @@
 	}
 	
 	
-	
+	//function function to check if the user email exists
+	public function email_exist($email){
+
+		$user_id = $this->session->userdata('user_id');
+		$this->db->where('email',$email);
+		$this->db->where('user_id', $user_id);
+		return $this->db->get('teacher')->num_rows();
+
+	}
+
+	//function to featch for individual attendances
+	public function individual_attend($id){
+		$this->db->select('course_attendance.firstname, course_attendance.mname, course_attendance.lastname,
+		course_attendance.reg_no as reg, COUNT(course_attendance.attendance_date) as totals, program.program_name as programs');
+		$this->db->from('course_attendance');
+		$this->db->where('course_attendance.reg', $id);
+	}
 }
