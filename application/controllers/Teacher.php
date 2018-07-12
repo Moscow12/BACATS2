@@ -21,6 +21,20 @@
 			$this->load->view('teacher/footer');
 		}
 
+		//function tocheck if the user arleady exixt
+		// public function check_profile(){
+
+		// 	$checkeamail;
+		// 	$checkeamail = $this->register_model->email_exist($email);
+		// 	if ($checkeamail == 1){
+		// 		return view_profile();
+		// }
+		// 	else {
+		// 		return profile();
+		// 	}
+		// }
+
+		//
 		public function profile(){
 			$data['title'] = 'Update Profile';
 
@@ -67,7 +81,18 @@
 
 				// redirect('index.php/Teacher/profile');
 			}	 	
-	 	}
+		 }
+		 
+		 //function to view profile
+		public function view_profile(){
+			$data['title'] = 'My Profile';
+			$data['profile'] = $this->teacher_model->get_profile();
+
+			$this->load->view('teacher/header2');
+			$this->load->view('teacher/vprofile', $data);
+			$this->load->view('teacher/footer');
+		}
+
 	 
 		 #teacher course registration
 		public function course(){
@@ -116,13 +141,20 @@
 			$this->load->view('teacher/footer');
 		}
 
-		public function view_profile(){
-			$data['title'] = 'My Profile';
-			$data['profile'] = $this->teacher_model->get_profile();
+		//function to view the attendance of individual student
+		public function attend(){
+
+			$data['title'] = 'Individual attendance';
+			
+			$reg_no = $_GET['reg_no'];
+			
+			$data['attendances'] = $this->teacher_model->individual_attend($reg_no);
 
 			$this->load->view('teacher/header2');
-			$this->load->view('teacher/vprofile', $data);
+			$this->load->view('teacher/mmoja', $data);
 			$this->load->view('teacher/footer');
+
+
 		}
 
 
