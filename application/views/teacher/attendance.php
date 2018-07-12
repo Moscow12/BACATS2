@@ -33,7 +33,7 @@
               <tbody>
               <?php foreach($attendances as $course_attendance){?>
                 <tr>
-                  <td><?php echo $course_attendance['names']; ?></td>
+                  <td><?php echo $course_attendance['firstname'].' '.$course_attendance['mname'].' '.$course_attendance['lastname']; ?></td>
                   <td><?php echo $course_attendance['reg']; ?></td>
                   <td><?php echo $course_attendance['programs']; ?></td>
                   <td><?php echo $course_attendance['totals']; ?></td>

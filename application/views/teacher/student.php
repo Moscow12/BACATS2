@@ -15,7 +15,7 @@
 					<th rowspan="1">Name</th>
 					<th rowspan="1">Registration No.</th>
 					<th rowspan="1">Program</th>
-					<th colspan="1">View Attandance</th>
+					<th colspan="1"><i class = "fa fa-eye"></th>
 					
 				</tr>
 			</thead>
@@ -23,10 +23,13 @@
 				<?php $numb = 1; foreach($students as $user_view){?>
 					<tr>
 					<th scope="row"><?php echo $numb++; ?></th>
-					<td><?php echo $user_view['name']; ?> </td>
+					<td><?php echo $user_view['firstname'].' '.$user_view['mname'].' '.$user_view['lastname']; ?> </td>
 					<td><?php echo $user_view['reg_no']; ?> </td>
 					<td><?php echo $user_view['program_name'];?></td>
-                    <td><button class="btn btn-success"><i class = "fa fa-eye"></button></i></td>
+					<form action="attend">
+                    	<td><input type="submit" class="btn btn-success" value=" View attendances"></td>
+						<input type="hidden" value="<?php echo $user_view['reg_no']; ?>" name="reg_no">
+					</form>
 					<tr><br/>
 				<?php }?>
 		</table>

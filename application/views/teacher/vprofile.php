@@ -17,7 +17,7 @@
 							<?php foreach($profile as $tprofile_view){?>
 								<tr> 
 									<th>Name</th>
-									<td><?php echo $tprofile_view['name']; ?></td>
+									<td><?php echo $tprofile_view['firstname'].' '.$tprofile_view['mname'].' '.$tprofile_view['lastname']; ?></td>
 								</tr>	<?php }?>
 								<tr>	
 									<th>Reg. No.</th>
