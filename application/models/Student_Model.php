@@ -57,7 +57,7 @@
 
         public function get_profile(){
             $user = $this->session->userdata('user_id');		
-            $this->db->select('reg_no, CONCAT( firstname, '.', mname, '.', lastname) as name, email, phoneno, location, dob, gender, d.program_name' );
+            $this->db->select('reg_no, firstname, mname, lastname, email, phoneno, location, dob, gender, d.program_name' );
             $this->db->from( 'sprofile_view s');
             $this->db->join('program d', 'd.id = s.program_id', 'inner');
             $this->db->where('s.id', $user);
@@ -91,8 +91,7 @@
 
        
         public function tought_by(){
-            $this->db->select('CONCAT( users.firstname, users.mname, users.lastname) as Byname,
-             course.course_name, course.course_code');
+            $this->db->select('users.firstname, users.mname, users.lastname, course.course_name, course.course_code');
              $this->db->from('users');
              $this->db->join('teacher', 'users.id = teacher.user_id', 'inner');
              $this->db->join('teacher_course', 'teacher.id = teacher_course.teacher_id', 'inner');
@@ -109,7 +108,7 @@
             foreach($_POST['course'] as $selected){
                 $selected;
             
-                 $id = $this->session->userdata('user_id');
+                $id = $this->session->userdata('user_id');
             $this->db->query("insert into student_course (student_id,course_id)
             values('$id','$selected')");   
 
@@ -121,6 +120,10 @@
         //here
         public function course_confirmed(){
             $this->db->select('course_name, course_code');
+            $this->db->from('course');
+            $query = $this->db->get();
+            return $query->result_array();
+
             
         }
 
