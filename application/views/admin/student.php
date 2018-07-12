@@ -39,12 +39,20 @@
 			  <?php $numb =1; foreach($students as $user_view){?>
 					<tr>
 					<th scope="row"><?php echo $numb++; ?></th>
-					<td><?php echo $user_view['name']; ?> </td>
+					<td><?php echo $user_view['firstname'].' '.$user_view['mname'].' '.$user_view['lastname']; ?> </td>
 					<td><?php echo $user_view['reg_no']; ?> </td>
 					<td><?php echo $user_view['program_name']; ?></td>
 					<td><button class="btn btn-success">Active</button></td>
-					<td><a href="#profile" class="btn btn-success">View</a></td>
-					<td><a href="enrollfinger" class="btn btn-info">Enroll finger</a></td>
+					<form action="profile">
+							<td><input type="submit" class="btn btn-success" Value="View"></td>
+							<input type="hidden" value="<?php echo $user_view['reg_no']; ?>" name="reg_no">
+
+					</form>
+					<form action="enrollfinger">
+						<td><input type="submit" class="btn btn-info"value="Enroll finger"></td>
+						<input type="hidden" value="<?php echo $user_view['reg_no']; ?>" name="reg_no">
+
+					</form>
 					<td><a class="btn btn-danger disabled">Deactivate</a></td>
 				
 				<?php }?>
