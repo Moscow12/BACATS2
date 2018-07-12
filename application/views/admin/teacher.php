@@ -26,9 +26,12 @@
 			<?php foreach($teachers as $users){?>
 				<tr>
 					<td scope="row"><?php echo $users['id']; ?></td>
-					<td><?php echo $users['name']; ?> </td>
+					<td><?php echo $users['firstname'].' '.$users['mname'].' '.$users['lastname']; ?> </td>
 					<td><?php echo $users['reg_no']; ?> </td>
-					<td ><button class="btn btn-success">View</button></td>
+					<form action="tprofile">
+						<td ><input type="submit" class="btn btn-success" value="View profile"></td>
+						<input type = "hidden" value="<?php echo $users['id']; ?>" name= "id">
+					</form>
 					<td><button class="btn btn-primary"> Edit</button></td>
 					<td><button class="btn btn-danger"> Delete</button></td>
 				
