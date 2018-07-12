@@ -26,7 +26,7 @@
 		// }
 		public function get_teachers(){
 			
-			$this->db->select('reg_no,id, CONCAT(firstname , ' . ', mname , ' . ', lastname) as name', 'program_name');
+			$this->db->select('reg_no,id, firstname , mname , lastname ', 'program_name');
 			$this->db->from('users');
 			#$this->db->join('student', 'student.user_id= users.id', 'student.program_id = program.id ', 'inner');
 			$this->db->where('role_id = 1');
@@ -108,7 +108,7 @@
  		public function get_course(){
 			
 		
-			$this->db->select('course_code, course_name, CONCAT(firstname, mname, lastname) as byname');
+			$this->db->select('course_code, course_name, firstname, mname, lastname');
 			$this->db->from('course_view');
 			$this->db->join('users', 'users.id= course_view.teacher_id', 'inner');
 						
@@ -130,8 +130,7 @@
 		//course byteacher
 		public function course_teach(){
 		
-			$this->db->query("SELECT course_name, course_code,
-			 CONCAT(firstname, mname, lastname) as byname 
+			$this->db->query("SELECT course_name, course_code, firstname, mname, lastname
 			FROM course_view inner JOIN users WHERE users.id = course_view.id");
 		} 
 
@@ -152,12 +151,12 @@
 		//getting attendances 
 		public function get_attendance($course_id){
 
-				$this->db->select('CONCAT(course_attendance.firstname, course_attendance.mname, course_attendance.lastname) as names,
+				$this->db->select('course_attendance.firstname, course_attendance.mname, course_attendance.lastname,
 				course_attendance.reg_no as reg, COUNT(course_attendance.attendance_date) as totals, program.program_name as programs');
 			$this->db->from('course_attendance');
 			$this->db->join('program', 'course_attendance.program_id = program.id', 'inner');
 			$this->db->where('course_attendance.course_id', $course_id);
-			$this->db->group_by('names');
+			$this->db->group_by('reg');
 
 			$query = $this->db->get();
 			return $query->result_array();
@@ -172,17 +171,23 @@
 			return $query->result_array();
 		}
 
+		//getting an id of the student clicked
+		public function prof($reg_no){
+
+			$this->db->select('id');
+			$this->db->from('user_view');
+			$this->db->where('user_view.reg_no', $reg_no);
+
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+
 		//trail
 		public function get_student(){
-			$this->db->select('CONCAT(user_view.firstname, '.',user_view.mname,'.', user_view.lastname) as name, user_view.reg_no, program.program_name');
+			$this->db->select('user_view.firstname, user_view.mname, user_view.lastname, user_view.reg_no, program.program_name');
 			$this->db->FROM ('user_view');
 			$this->db-> join ('program','user_view.program_id = program.id', 'inner');
-			#$this->db->where('user_view.program_id = program.id');
 			
-			// $this->db->select('reg_no, CONCAT(firstname , ' .', mname , ' .', lastname) as name', 'program_name');
-			// $this->db->from('users');
-			// #$this->db->join('student', 'student.user_id= users.id', 'student.program_id = program.id ', 'inner');
-			// $this->db->where('role_id = 2');
 			$query = $this->db->get();
 			return $query->result_array();
 		}
@@ -208,14 +213,25 @@
 
 
 		// function to view the profile of the individual student
-		public function student_profile(){
-			$user = $this->session->userdata('user_id');		
-            $this->db->select('reg_no, CONCAT( firstname, '.', mname, '.', lastname) as name, email, phoneno, location, dob, gender, d.program_name' );
+		public function student_profile($id){
+            $this->db->select('reg_no, firstname, mname, lastname, email, phoneno, location, dob, gender, d.program_name' );
             $this->db->from( 'sprofile_view s');
             $this->db->join('program d', 'd.id = s.program_id', 'inner');
-            $this->db->where('s.id', $user);
+            $this->db->where('s.reg_no', $id);
             
             $query = $this->db->get();
             return $query->result_array();
+		}
+
+		public function teacher_profile($id){
+
+			//$this->db->select('reg_no, CONCAT( firstname, '.', mname, '.',lastname) as name, email, phoneno, office_no, dob, gender, d.dept_name');
+			$this->db->select('reg_no, firstname, mname, lastname, email, phoneno, office_no, dob, gender, d.dept_name');
+			$this->db->from( 'tprofile_view p');
+			$this->db->join('department d', 'd.id = p.dept_id', 'inner');
+			$this->db->where('p.id', $id);
+			
+			$query = $this->db->get();
+			return $query->result_array();
 		}
 	}
