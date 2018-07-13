@@ -84,6 +84,8 @@
 		$this->db->where('course_id = 9' );
 		$this->db->where(' DATE(`attendance_date`) = CURDATE()');
 		$this->db->group_by('names');
+
+		
 		
 	}
 	
@@ -92,7 +94,7 @@
 	public function email_exist($email){
 
 		$user_id = $this->session->userdata('user_id');
-		$this->db->where('email',$email);
+		$this->db->where('email',$email); 
 		$this->db->where('user_id', $user_id);
 		return $this->db->get('teacher')->num_rows();
 
@@ -100,9 +102,16 @@
 
 	//function to featch for individual attendances
 	public function individual_attend($id){
-		$this->db->select('course_attendance.firstname, course_attendance.mname, course_attendance.lastname,
+		$this->db->select('course_attendance.firstname, course_attendance.mname, course_attendance.lastname, course_attendance.id,
 		course_attendance.reg_no as reg, COUNT(course_attendance.attendance_date) as totals, program.program_name as programs');
 		$this->db->from('course_attendance');
-		$this->db->where('course_attendance.reg', $id);
+		$this->db->join('program', 'course_attendance.program_id = program.id', 'inner');
+		$this->db->where('course_attendance.reg_no', $id);
+
+		$query = $this->db->get();
+		if($query->num_rows() > 0) {
+			$results = $query->result();
+		}
+		return $results;
 	}
 }
