@@ -8,7 +8,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>BACATS | register</title>
+		<title>BACATS | collage</title>
 		<!-- <link rel="stylesheet" href="../../../assets/css/main.css"> -->
 		<link href="<?=base_url();?>assets/css/main.css" rel="stylesheet">
 	</head>
@@ -36,8 +36,8 @@
 <?php if($this->session->flashdata('collage_added')):  ?>    
                 <?php echo '<p class="alert alert-success">'.$this->session->flashdata('collage_added'). '</p>'; ?>
             <?php endif; ?>
-<div class="row"><div class="col-md-3"></div>
-	<div class="col-md-6">
+<div class="row"><div class="col-sm-3"></div>
+	<div class="col-sm-6">
 		<div class="card-body">
 			<div class="card-header small text-muted"> 
 				<h2><?php echo $title; ?></h2>
@@ -48,5 +48,5 @@
 				<?php } ?>
 				</ul> 
 		</div>
-	</div>	<div class="col-md-3"></div>
+	</div>	<div class="col-sm-3"></div>
 </div>
