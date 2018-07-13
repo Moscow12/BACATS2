@@ -2,48 +2,32 @@
 <?php if(!($this->session->userdata('user_id'))){
 	redirect('index.php/users/index');
 	}?>
-<div class="col-sm-12">
-    <div class="card">
-        <div class="card-header text-center"><h4><?php echo $title; ?></h4></div>
-            <div class="card-body">
-              
-            <table class="table table-bordered table-responsive" id="dataTable" width="100%" cellspacing="0">
-                <!-- <tr><thead>
-                    <th>Attandance Date course1</th>
-                    <td><?php #echo date('Y/m/d'); ?></td>
-
-                    </thead>
-                </tr>
-                <tr>
-                    <td><?php #echo date('Y/m/d'); ?></td>
-                    <td>2 <?php #echo date('Y/m/d'); ?></td>
-                </tr>
-                <tr>
-                    <td><?php #echo date('Y/m/d'); ?></td>
-                    <td>2 <?php #echo date('Y/m/d'); ?></td>
-                </tr>
-                <tr>
-                    <td><?php #echo date('Y/m/d'); ?></td></tr><tr>
-                    <td><?php #echo date('Y/m/d'); ?></td></tr>
+<!-- <div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header text-center"><h4><?php echo $title; ?></h4></div>
+                <div class="card-body">
                 
-                <tfoot>
-                    <td>Percentage  <?php #$otea = rand(00, 100); echo $otea."%" ; ?></td>
-                    <td>Percentage2  <?php #$otea = rand(00, 100); echo $otea."%" ; ?></td>
-                </tfoot>         
-
-            </table>-->
-            
-            <?php foreach($attended as $attendance){ ?>
-
-                <?php echo $attendance['attendance_date'];?>
-
-            <?php }?> 
-            <div class="card-footer border-danger"><h4>Be Punctual attend Classes</h4></div>
+                <table class="table table-bordered table-responsive" id="dataTable" width="100%" cellspacing="0">
+                <tr><thead>
+                        <th rowspan="1">#</th>
+                        <th>Attandance Date</th>
+                        </thead>
+                    </tr>
+                
+                <?php $idadi = 1; foreach($attendances as $attendance){ ?>
+                        <tr>
+                            <th scope="row"><?php echo $idadi++; ?></th>
+                            <td><?php echo $attendance['attendance_date'];?></td>
+                        </tr>
+                        <?php }?>
+                <div class="card-footer border-danger"><h4>Be Punctual attend Classes</h4></div>
+            </div>
+        </div>
         </div>
     </div>
-</div>
-<div>
-	<table class="table" border="1"> 
+<div> -->
+	<!-- <table class="table" border="1"> 
 		<caption>Registered Students Attandances</caption> 
 			<thead> 
 				<tr align="center"> 
@@ -74,4 +58,39 @@
 				
 			</tbody> 
 		</table>
-</div><!--End of table design-->
+</div> -->
+
+<!-- End of table design -->
+
+
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header text-center"><h4><?php echo $title; ?></h4></div>
+            <div class="card-body">
+                
+            <table class="table table-bordered table-responsive" id="dataTable" width="100%" cellspacing="0">
+                <tr><thead>
+                    <th rowspan="1">#</th>
+                    <th>Attandance course</th>
+                  
+                    </thead>
+                </tr>
+                
+                    <?php $idadi = 1; foreach($attendances as $attendance){ ?>
+                     <tr>
+                        <th scope="row"><?php echo $idadi++; ?></th>
+                        <td><?php echo $attendance['attendance_date'];?></td>
+                    </tr>
+                    <?php }?>
+               
+               
+                <tfoot>
+                    <td></td>
+                    <td>Percentage%  <?php #$otea = rand(00, 100); echo $otea."%" ; ?></td>
+                </tfoot>                          
+            </table>
+            
+            <div class="card-footer border-danger"><h4>Be Punctual attend Classes</h4></div>
+        </div>
+    </div>
+</div>

@@ -10,8 +10,8 @@
             <table class="table table-bordered table-responsive" id="dataTable" width="100%" cellspacing="0">
                 <tr><thead>
                     <th rowspan="1">#</th>
-                    <th>Attandance Date course1</th>
-                    <th>Attandance Date course2</th>
+                    <th>Attandance course1</th>
+                    <th>Attandance course2</th>
                     </thead>
                 </tr>
                 
@@ -25,8 +25,8 @@
                
                 <tfoot>
                     <td></td>
-                    <td>Percentage  <?php $otea = rand(00, 100); echo $otea."%" ; ?></td>
-                    <td>Percentage2  <?php $otea = rand(00, 100); echo $otea."%" ; ?></td>
+                    <td>Percentage  __ <?php #$otea = rand(00, 100); echo $otea."%" ; ?></td>
+                    <td>Percentage __ <?php #$otea = rand(00, 100); echo $otea."%" ; ?></td>
                 </tfoot>                          
             </table>
             
