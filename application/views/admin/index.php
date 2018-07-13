@@ -3,7 +3,8 @@
 	redirect('index.php/users/index');
 	}?>
   <?php if($this->session->flashdata('success_login')): ?>
-  <p class="alert alert-dismissable alert-success"><?php echo $this->session->flashdata('success_login'); ?></p>
+    
+    <?php echo '<p class="alert alert-success">'.$this->session->flashdata('success_login'). '</p>'; ?>
   <?php endif; ?>
 <!-- Icon Cards-->
 <div class="row">
@@ -11,9 +12,9 @@
           <div class="card text-white bg-primary o-hidden h-100">
             <div class="card-body">
               <div class="card-body-icon">
-                <i class="fa fa-fw fa-comments"></i>
+                <i class="fa fa-fw fa-book"></i>
               </div>
-              <div class="mr-5">26 New Messages!</div>
+              <div class="mr-5">5 Course Registered</div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="#">
               <span class="float-left">View Details</span>
@@ -45,7 +46,7 @@
               <div class="card-body-icon">
                 <i class="fa fa-fw fa-shopping-cart"></i>
               </div>
-              <div class="mr-5">123 New Orders!</div>
+              <div class="mr-5">1 Divece(s)</div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="#">
               <span class="float-left">View Details</span>
@@ -59,9 +60,9 @@
           <div class="card text-white bg-danger o-hidden h-100">
             <div class="card-body">
               <div class="card-body-icon">
-                <i class="fa fa-fw fa-support"></i>
+                <i class="fa fa-fw fa-users"></i>
               </div>
-              <div class="mr-5">13 New Tickets!</div>
+              <div class="mr-5">7 Users registered</div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="#">
               <span class="float-left">View Details</span>
