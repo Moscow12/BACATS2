@@ -61,7 +61,7 @@
 
 							case '3':
 							redirect("index.php/Registered/index");
-							$this->session->set_flashdata('success_login', 'You are now logged in as admin');
+							$this->session->set_flashdata('success_login', 'You are now logged in as administrator');
 							break;
 
 							default:
@@ -73,15 +73,17 @@
 					}
 				}
 				else{
-					echo "Failed to login, Plz enter valid data";
+					#echo "Failed to login, Plz enter valid data";
+					redirect("index.php/users/failed");
+
 				}
 			}	 	
 	 	}
 
 	 	public function failed(){
 				 $data['title'] = 'Sign in failed | try again';
-				 
-	 			$this->load->view('templates/header');
+				 $this->session->set_flashdata('login_fail', 'Either password or username is invalid');
+
 				$this->load->view('users/login', $data);
 				$this->load->view('templates/footer');	
 	 	}
