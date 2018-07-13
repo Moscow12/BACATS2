@@ -20,10 +20,16 @@
     </head>
   <body>
       <div class="row">
+        
         <div class="card mesha">
           <div class="card-header text-center">Enter Your Creadentials to login</div>
-            <div class="card-title text-center"><h4><?php #echo $title; ?> </h4></div>
+            <div class="card-title text-center"><h4 class="alert alert-danger"><?php echo $title; ?> </h4></div>
               <div class="card-body">
+              <div class="form-group">
+                  <?php if($this->session->flashdata('login_fail')):  ?>    
+                        <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('login_fail'). '</p>'; ?>
+                    <?php endif; ?>
+              </div>
               <div class="form-group">
               <center><?php echo validation_errors(); ?></center>
                 </div>
@@ -45,9 +51,7 @@
                   </div>
                 </div>
                 <button class="btn btn-primary btn-block" type="submit">login</button> 
-                <div class="text-center">
-                  <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
-                </div>
+                
               </div>
           </div>
         </div>
