@@ -43,7 +43,7 @@
 
 	 		$this->form_validation->set_rules('gender', 'Gender', 'required');
 	 		$this->form_validation->set_rules('dob', 'Date of Birth', 'required');
-	 		$this->form_validation->set_rules('email', 'email', 'required');
+	 		$this->form_validation->set_rules('email', 'email', 'required|callback_check_email_exists');
 			$this->form_validation->set_rules('phoneno', 'Phone number', 'required');
 			$this->form_validation->set_rules('office_no', 'Office number', 'required');
 	 		$this->form_validation->set_rules('dept_id', 'Depertment', 'required');
@@ -82,6 +82,17 @@
 				// redirect('index.php/Teacher/profile');
 			}	 	
 		 }
+		 public function check_email_exists(){
+			if($this->teacher_model->check_email_exists($email, $user_id)){
+				//return true;
+				redirect('index.php/Teacher/view_profile');
+
+			} else{
+				//return false; 
+				redirect('index.php/Teacher/profile');
+
+			}
+		}
 		 
 		 //function to view profile
 		public function view_profile(){
@@ -93,6 +104,17 @@
 			$this->load->view('teacher/footer');
 		}
 
+		//function to update profile
+		public function update(){
+			$data['title'] = 'Update your profile';
+			$data['profile'] = $this->teacher_model->get_profile();
+			$data['Depertment'] = $this->register_model->get_dept();
+
+
+			$this->load->view('teacher/header2');
+			$this->load->view('teacher/editprofile', $data);
+			$this->load->view('teacher/footer');
+		}
 	 
 		 #teacher course registration
 		public function course(){

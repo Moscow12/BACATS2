@@ -58,21 +58,25 @@ class Student extends CI_Controller{
 				$this->student_model->set_stprofile($data);
 				$this->session->set_flashdata('student_register', 'Your profile has been updated');
 				
-				redirect('index.php/Student/Myprofile');
+				redirect('index.php/Student/view_profile');
 			}
       }	 	
     }
 
-    public function check_email_exists($email){
-        $this->form_validation->set_message('check_email_exists', 'That Email Address already Exist.');
-        if($this->student_model->check_email_exists($email)){
-            return true;
+    
+    public function check_email_exists(){
+        if($this->student_model->check_email_exists($email, $user_id)){
+            //return true;
+            redirect('index.php/Student/view_profile');
+
         } else{
-            return false; 
+            //return false; 
+            redirect('index.php/Student/profile');
+
         }
     }
-
-    public function Myprofile(){
+    
+    public function view_profile(){
         $data['title'] = 'My Profile';
         $data['profile'] = $this->student_model->get_profile();
 
@@ -81,6 +85,18 @@ class Student extends CI_Controller{
         $this->load->view('student/footer');
     }
     
+
+    public function update(){
+        $data['title'] = 'Update your Profile';
+        $data['profile'] = $this->student_model->get_profile();
+        $data['Program'] = $this->register_model->get_program();
+
+
+        $this->load->view('student/header');
+        $this->load->view('student/editprofile', $data);
+        $this->load->view('student/footer');
+
+    }
 
     // public function enroll(){
 
