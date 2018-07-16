@@ -81,11 +81,12 @@
 		course_attendance.reg_no as reg, course_attendance.attendance_date as et, program.program_name as pname');
 		$this->db->from('course_attendance');
 		$this->db->join('program', 'course_attendance.program_id = program.id', 'inner');
-		$this->db->where('course_id = 9' );
+		$this->db->where('course_attendance.course_id = 9' );
 		$this->db->where(' DATE(`attendance_date`) = CURDATE()');
 		$this->db->group_by('names');
 
-		
+		$query = $this->db->get();
+		return $query->result_array();
 		
 	}
 	
@@ -113,5 +114,15 @@
 			$results = $query->result();
 		}
 		return $results;
+	}
+
+	public function student_profile($id){
+		$this->db->select('reg_no, firstname, mname, lastname, email, phoneno, location, dob, gender, d.program_name' );
+		$this->db->from( 'sprofile_view s');
+		$this->db->join('program d', 'd.id = s.program_id', 'inner');
+		$this->db->where('s.reg_no', $id);
+		
+		$query = $this->db->get();
+		return $query->result_array(); 
 	}
 }
