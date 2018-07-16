@@ -19,14 +19,30 @@
                      <tr>
                         <th scope="row"><?php echo $idadi++; ?></th>
                         <td><?php echo $attendance['attendance_date'];?></td>
+                        <td></td>
                     </tr>
                     <?php }?>
                
                
                 <tfoot>
                     <td></td>
-                    <td>Percentage  __ <?php #$otea = rand(00, 100); echo $otea."%" ; ?></td>
-                    <td>Percentage __ <?php #$otea = rand(00, 100); echo $otea."%" ; ?></td>
+                    <td>Percentage=
+                    <?php 
+                      $pass = 15;
+                      $times =  $attendance['totals'];
+                      $percentage = $times/$pass*100;
+                      echo (round($percentage,2)). "%";
+                  ?></td>
+                    </td>
+                    <td>Percentage = 
+                    
+                    <?php 
+                      $pass = 10;
+                      $time =  $attendance['totals'];
+                      $percentage = $time/$pass*100;
+                      echo (round($percentage,2)). "%";
+                  ?></td>
+                    </td>
                 </tfoot>                          
             </table>
             
