@@ -41,7 +41,7 @@
        
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-          <a class="nav-link" href="profile">
+          <a class="nav-link" href="check_email_exists">
             <i class="fa fa-fw fa-user-plus"></i>
             <span class="nav-link-text">Edit profile</span>
           </a>

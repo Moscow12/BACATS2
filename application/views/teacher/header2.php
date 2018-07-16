@@ -41,7 +41,7 @@
        
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Update profile">
-          <a class="nav-link" href="profile">
+          <a class="nav-link" href="check_email_exists">
             <i class="fa fa-fw fa-user"></i>
             <span class="nav-link-text">Profile</span>
           </a>
