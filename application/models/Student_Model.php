@@ -91,7 +91,7 @@
 
        
         public function tought_by(){
-            $this->db->select('users.firstname, users.mname, users.lastname, course.course_name, course.course_code');
+            $this->db->select('users.firstname, users.mname, users.lastname, course.course_name, course.id, course.course_code');
              $this->db->from('users');
              $this->db->join('teacher', 'users.id = teacher.user_id', 'inner');
              $this->db->join('teacher_course', 'teacher.id = teacher_course.teacher_id', 'inner');
@@ -112,15 +112,21 @@
             $this->db->query("insert into student_course (student_id,course_id)
             values('$id','$selected')");   
 
+
+            
             }
 
         }
-
+ 
 
         //here
         public function course_confirmed(){
-            $this->db->select('course_name, course_code');
-            $this->db->from('course');
+            $user = $this->session->userdata('user_id');
+            $this->db->select('student_course.id, course.course_name, course.course_code, student_course.student_id ');
+            $this->db->from('student_course');
+            $this->db->join('course', 'course.id = student_course.course_id');
+            $this->db->where('student_course.course_id = course.id');
+            $this->db->where('student_course.student_id', $user);
             $query = $this->db->get();
             return $query->result_array();
 
@@ -131,7 +137,7 @@
 
         public function getattendance(){
             $user = $this->session->userdata('user_id');		
-            $this->db->select('attendance_date, course_id, student_id');
+            $this->db->select('attendance_date, COUNT(attendance_date) as totals, course_id, student_id');
             $this->db->from('attendance');
             $this->db->where('attendance.id', $user);
 
