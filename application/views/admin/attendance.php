@@ -49,7 +49,9 @@
                   <td><?php echo $course_attendance['programs']; ?></td>
                   <td><?php echo $course_attendance['totals']; ?></td>
                   
-                  <td> <?php $otea = rand(00, 100); echo $otea."%" ; ?></td>
+                  <td> <?php $otea = rand(00, 100); echo $otea."%" ; ?>
+                  
+                  </td>
                 </tr>
               <?php }?>
                 
