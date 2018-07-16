@@ -67,14 +67,15 @@
         }
         
         //check the email exist
-		public function check_email_exists($email){
-			$query = $this->db->get_where('student', array('email'=> $email));
-			if(empty($query->row_array())){
-				return true;
-			} else{
-				false;
-			} 
-		}
+		public function check_email_exists($email, $user_id){
+            $user_id = $this->session->userdata('user_id');
+            $query = $this->db->get_where('student', array('email'=> $email, 'user_id' =>$user_id));
+            if(empty($query->row_array())){
+                return true;
+            } else{
+                false;
+            } 
+        }
         public function content(){
             
         }

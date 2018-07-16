@@ -50,7 +50,7 @@
 		$query = $this->db->get();
 		return $query->result_array();
 	}
-	public function get_profile(){
+	public function get_profile(){ 
 
 		$user = $this->session->userdata('user_id');		
 		$this->db->select('reg_no, firstname,  mname, lastname, email, phoneno, office_no, dob, gender, d.dept_name');
@@ -99,6 +99,16 @@
 		$this->db->where('user_id', $user_id);
 		return $this->db->get('teacher')->num_rows();
 
+	}
+
+	public function check_email_exists($email, $user_id){
+		$user_id = $this->session->userdata('user_id');
+		$query = $this->db->get_where('teacher', array('email'=> $email, 'user_id' =>$user_id));
+		if(empty($query->row_array())){
+			return true;
+		} else{
+			false;
+		} 
 	}
 
 	//function to featch for individual attendances
