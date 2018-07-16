@@ -1,5 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Student | Attendances</title>
+      <script type="text/javascript">
 
-<?php if(!($this->session->userdata('user_id'))){
+          function PrintElem(elem)
+          {
+              var mywindow = window.open('', 'PRINT', 'height=700,width=900');
+
+              mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+            
+              mywindow.document.write(document.getElementById(elem).innerHTML);
+            
+              mywindow.document.close(); // necessary for IE >= 10
+              mywindow.focus(); // necessary for IE >= 10*/
+
+              mywindow.print();
+              mywindow.close();
+
+              return true;
+          }
+        </script>
+  </head>
+  <body>
+  <?php if(!($this->session->userdata('user_id'))){
 	redirect('index.php/users/index');
 	}?>
 <?php echo $title; ?>
@@ -8,7 +35,7 @@
         <div class="card-header">
           <i class="fa fa-table"></i>Attendance details table</div>
         <div class="card-body">
-          <div class="table-responsive">
+          <div class="table-responsive" id="attendance">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
@@ -38,32 +65,24 @@
                   <td><?php echo $course_attendance['programs']; ?></td>
                   <td><?php echo $course_attendance['totals']; ?></td>
                   
-                  <td> <?php $otea = rand(00, 100); echo $otea."%" ; ?></td>
+                  <td> <?php 
+                      $pass = 15;
+                      $times =  $course_attendance['totals'];
+                      $percentage = $times/$pass*100;
+                      echo (round($percentage,2)). "%";
+                  ?></td>
                 </tr>
               <?php }?>
-                
-                <!-- <tr>
-                  <td>Semen Mak Ilan</td>
-                  <td>2015-04-08000</td>
-                  <td>Bachelor of Science with computer Science</td>
-                  <td>12</td>
-                  
-                  <td> <?php #$otea = rand(00, 100); echo $otea."%" ; ?></td>
-                </tr>
-                <tr>
-                  <td>Hemmed Ally</td>
-                  <td>2015-04-08111</td>
-                  <td>Bachelor of Science in computer Science</td>
-                  <td>27</td>
-                  
-                  <td> <?php #$otea = rand(00, 100); echo $otea."%" ; ?></td>
-                </tr> -->
               </tbody>
             </table><a href="dayattandance" class="btn btn-primary " title="Click here to view today attendances">Today attendance</a>
-            </table><a href="download" class="btn btn-primary "><i class="fa fa-download" title="Click to download the report of attendances for the time"></i>Download Total attendance</a>
+            </table><button id="print" onclick="PrintElem('attendance')" class="btn btn-primary "><i class="fa fa-download" title="Click to download the report of attendances for the time"></i>Print attendance</a>
 
           </div>
         </div>
         <div class="card-footer small text-muted">Updated at <?php echo date('y/m/d'); ?></div>
       </div>
     </div>
+  </body>
+</html>
+
+
