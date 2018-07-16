@@ -129,16 +129,24 @@ class Student extends CI_Controller{
         
         $this->load->view('student/header');
         $this->load->view('student/attendance', $data);
-        $this->load->view('student/footer');
+        $this->load->view('student/footer'); 
     }
 
     public function one(){
         
         $this->student_model->two();
 
-       
+        $id = $this->session->userdata('user_id');
+        $this->session->set_flashdata('course_registered', 'Successful course registered');
 
-        redirect('index.php/teacher/viewcourse');
+        redirect('index.php/Teacher/viewcourse');
+
+        // $data['courses'] = $this->student_model->course_confirmed();
+
+        // $this->load->view('student/header');
+        // $this->load->view('student/unconfireg', $data);
+        // $this->load->view('student/footer');
+        
    
     }
 
@@ -146,7 +154,8 @@ class Student extends CI_Controller{
 
         $data['title'] = 'Confirmed course';
 
-        $this->student_model->course_confirmed();
+        $data['courses'] = $this->student_model->course_confirmed();
+        #$this->student_model->course_confirmed();
 
         $this->load->view('student/header');
         $this->load->view('student/unconfireg', $data);
