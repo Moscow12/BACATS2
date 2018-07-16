@@ -1,96 +1,53 @@
-
 <?php if(!($this->session->userdata('user_id'))){
 	redirect('index.php/users/index');
 	}?>
-<!-- <div class="row">
-    <div class="col-sm-12">
-        <div class="card">
-            <div class="card-header text-center"><h4><?php echo $title; ?></h4></div>
-                <div class="card-body">
-                
-                <table class="table table-bordered table-responsive" id="dataTable" width="100%" cellspacing="0">
-                <tr><thead>
-                        <th rowspan="1">#</th>
-                        <th>Attandance Date</th>
-                        </thead>
-                    </tr>
-                
-                <?php $idadi = 1; foreach($attendances as $attendance){ ?>
-                        <tr>
-                            <th scope="row"><?php echo $idadi++; ?></th>
-                            <td><?php echo $attendance['attendance_date'];?></td>
-                        </tr>
-                        <?php }?>
-                <div class="card-footer border-danger"><h4>Be Punctual attend Classes</h4></div>
-            </div>
-        </div>
-        </div>
+
+	<div class="row"><div class="col-sm-2"></div>
+    <div class="col-md-8">
+			<div class="card border-success">
+				<div class="card card-header border-success"><h4 class="text-center"><?php echo $title;  ?></h4></div>
+					<div class="card body">
+					<table class="table" border="0"> 
+							
+							<tbody>
+								<?php foreach($profile as $stprofile_view){?>
+									<tr> 
+										<th>Name</th>
+										<td><?php echo $stprofile_view['firstname'].' '.$stprofile_view['mname'].' '.$stprofile_view['lastname']; ?></td>
+									</tr>	
+									<tr>	
+										<th>Reg. No.</th>
+										<td><?php echo $stprofile_view['reg_no']; ?></td>
+									</tr>
+									<tr>	
+										<th>Location</th>
+										<td><?php echo $stprofile_view['location']; ?></td>
+									</tr>
+									<tr>	
+										<th>Date of Birth</th>
+										<td><?php echo $stprofile_view['dob'];?></td>
+									</tr>
+									<tr>	
+										<th>Gender</th>
+										<td><?php echo $stprofile_view['gender']; ?></td>
+									</tr>
+									<tr>	
+										<th>Phone Number</th>
+										<td><?php echo $stprofile_view['phoneno']; ?></td>
+									</tr>
+									<tr>	
+										<th>Email Address</th>
+										<td><?php echo $stprofile_view['email']; ?></td>
+									</tr> 
+									<tr> 
+										<th>Program</th> 
+										<td><?php echo $stprofile_view['program_name']; ?></td>
+									<tr> 
+								<?php }?>
+						
+							</tbody> 
+						</table>
+					</div>	<div class="card card-footer border-success"></div>
+				</div>		
+			</div><div class="col-sm-2"></div>
     </div>
-<div> -->
-	<!-- <table class="table" border="1"> 
-		<caption>Registered Students Attandances</caption> 
-			<thead> 
-				<tr align="center"> 
-					<th rowspan="2" align="right">Name</th>
-					<th rowspan="2">Reg.No</th>	
-					<th colspan="3" width="30%">Status</th>
-					<th rowspan="2">percentage</th>
-					
-					
-				</tr> 
-				<tr>
-					<th>normal</th>
-					<th>late</th>
-					<th>Absent</th>
-					
-				</tr>
-				
-			</thead> 
-			<tbody>
-				<tr> 
-					<td>Beatrice Mahone</td> 
-					<td>2015-04-00064</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><?php $otea = rand(10, 100); echo $otea."%" ; ?></td>
-				</tr> 
-				
-			</tbody> 
-		</table>
-</div> -->
-
-<!-- End of table design -->
-
-
-<div class="col-sm-12">
-    <div class="card">
-        <div class="card-header text-center"><h4><?php echo $title; ?></h4></div>
-            <div class="card-body">
-                
-            <table class="table table-bordered table-responsive" id="dataTable" width="100%" cellspacing="0">
-                <tr><thead>
-                    <th rowspan="1">#</th>
-                    <th>Attandance course</th>
-                  
-                    </thead>
-                </tr>
-                
-                    <?php $idadi = 1; foreach($attendances as $attendance){ ?>
-                     <tr>
-                        <th scope="row"><?php echo $idadi++; ?></th>
-                        <td><?php echo $attendance['attendance_date'];?></td>
-                    </tr>
-                    <?php }?>
-               
-               
-                <tfoot>
-                    <td></td>
-                    <td>Percentage%  <?php #$otea = rand(00, 100); echo $otea."%" ; ?></td>
-                </tfoot>                          
-            </table>
-            
-            <div class="card-footer border-danger"><h4>Be Punctual attend Classes</h4></div>
-        </div>
-    </div>
-</div>
