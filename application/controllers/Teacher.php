@@ -144,11 +144,11 @@
 		//function to view the attendance of individual student
 		public function attend(){
 
-			$data['title'] = 'Individual attendance';
+			$data['title'] = 'Student prifile';
 			
 			$reg_no = $_GET['reg_no'];
 			
-			$data['attendances'] = $this->teacher_model->individual_attend($reg_no);
+			$data['profile'] = $this->teacher_model->student_profile($reg_no);
 
 			$this->load->view('teacher/header2');
 			$this->load->view('teacher/mmoja', $data);
@@ -158,7 +158,7 @@
 		}
 
 
-		//Attendance function 
+		//Attendance function  
 		public function attendance(){
 		   $data['title'] = 'Attendance Table';
 
