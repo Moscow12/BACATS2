@@ -1,13 +1,22 @@
 
-<?php if(!($this->session->userdata('user_id'))){
+<?php
+
+if(!($this->session->userdata('user_id'))){
 	redirect('index.php/users/index');
-	}?>
+    }
+    
+    
+    
+    ?>
     <style>.table {
     border-radius: 5px;
     width: 99%;
     margin: 0px auto;
     float: none;
 }</style>
+ <?php if($this->session->flashdata('course_registered')):  ?>    
+                        <?php echo '<p class="alert alert-success">'.$this->session->flashdata('course_registered'). '</p>'; ?>
+                    <?php endif; ?>
 	
 <?php echo form_open('index.php/Student/one'); ?>
     <div class="row"><div class="col-sm-1"></div>
@@ -34,7 +43,7 @@
                                     <td ><?php echo $users['firstname'].' '.$users['mname'].' '.$users['lastname']; ?></td>
                                     <td align="center">
                                         <div class="form-check">
-                                            <input type="checkbox" name="course[]" value="<?php echo $users['course_code']; ?>" class="form-check-input"  align="center">
+                                            <input type="checkbox" name="course[]" value="<?php echo $users['id']; ?>" class="form-check-input"  align="center">
                                         </div>
                                     </td>
                                 </tr>
