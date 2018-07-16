@@ -370,13 +370,13 @@
 			$data['title'] = 'Enroll FingerPrints';
 
 			$reg_no = $_GET['reg_no'];
-			$data['students'] = $this->register_model->get_student($reg_no);
+			$data['students'] = $this->register_model->get_fingerprint($reg_no);
 
 
 			$this->load->view('admin/header1');
 			$this->load->view('admin/fingerscan', $data);
 			$this->load->view('admin/footer');
-		}
+		} 
 
 		public function profile(){
 			$data['title'] = 'Student profile';
