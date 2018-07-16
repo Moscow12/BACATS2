@@ -220,12 +220,22 @@
             $this->db->where('s.reg_no', $id);
             
             $query = $this->db->get();
-            return $query->result_array();
+            return $query->result_array(); 
+		}
+
+		//function to enroll fingerprints of individual student
+		public function get_fingerprint($id){
+			$this->db->select('users.id, reg_no, user_id');
+			$this->db->from('users');
+			$this->db->join('student', 'users.id = student.user_id');
+			$this->db->where('users.reg_no', $id);
+
+			$query = $this->db->get();
+            return $query->result_array(); 
 		}
 
 		public function teacher_profile($id){
 
-			//$this->db->select('reg_no, CONCAT( firstname, '.', mname, '.',lastname) as name, email, phoneno, office_no, dob, gender, d.dept_name');
 			$this->db->select('reg_no, firstname, mname, lastname, email, phoneno, office_no, dob, gender, d.dept_name');
 			$this->db->from( 'tprofile_view p');
 			$this->db->join('department d', 'd.id = p.dept_id', 'inner');
