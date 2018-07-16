@@ -27,7 +27,7 @@
 					<td><?php echo $user_view['reg_no']; ?> </td>
 					<td><?php echo $user_view['program_name'];?></td>
 					<form action="attend">
-                    	<td><input type="submit" class="btn btn-success" value=" View attendances"></td>
+                    	<td><input type="submit" class="btn btn-success" value=" View profile"></td>
 						<input type="hidden" value="<?php echo $user_view['reg_no']; ?>" name="reg_no">
 					</form>
 					<tr><br/>
