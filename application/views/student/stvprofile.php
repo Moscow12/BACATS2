@@ -4,18 +4,18 @@
 
 	<div class="row"><div class="col-sm-2"></div>
     <div class="col-md-8">
-			<div class="card border-success">
+			<div class="card m-3 border-success">
 				<div class="card card-header border-success"><h4 class="text-center"><?php echo $title; ?></h4></div>
 					<div class="card body">
 					<table class="table" border="0"> 
-						<caption>Profile Update <div class="btn btn-info"><i>edit profile</i></div></caption> 
+						<caption>Profile Update </caption> 
 							
 							<tbody>
 							<?php foreach($profile as $stprofile_view){?>
 								<tr> 
 									<th>Name</th>
 									<td><?php echo $stprofile_view['firstname'].' '.$stprofile_view['mname'].' '.$stprofile_view['lastname']; ?></td>
-								</tr>	<?php }?>
+								</tr>	
 								<tr>	
 									<th>Reg. No.</th>
 									<td><?php echo $stprofile_view['reg_no']; ?></td>
@@ -44,10 +44,16 @@
 									<th>Department</th> 
 									<td><?php echo $stprofile_view['program_name']; ?></td>
 								<tr> 
-						
+								<?php }?>
 							</tbody> 
 						</table>
-					</div>	<div class="card card-footer border-success"></div>
+					</div>
+					<form action="update">
+						<div class="focrm-group">
+							<button type="submit" class="btn btn-info ">Edit Profile</button>
+						</div>
+					</form>
+					<div class="card card-footer border-success"></div>
 				</div>		
 			</div><div class="col-sm-2"></div>
     </div>
